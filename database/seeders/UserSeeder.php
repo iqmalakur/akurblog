@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Carbon\Carbon;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
                 "name" => "Admin",
                 "email" => "admin@akurblog.com",
                 "email_verified_at" => $now,
-                "password" => bcrypt("admin1234"),
+                "password" => Hash::make("admin1234"),
                 "role" => "admin",
                 "created_at" => $now,
                 "updated_at" => $now,

@@ -18,6 +18,8 @@ class Post extends Model
         'published_at',
     ];
 
+    public $incrementing = false;
+
     protected function casts(): array
     {
         return [

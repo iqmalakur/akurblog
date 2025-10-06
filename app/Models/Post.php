@@ -18,6 +18,15 @@ class Post extends Model
         'published_at',
     ];
 
+    public $incrementing = false;
+
+    protected function casts(): array
+    {
+        return [
+            'published_at' => 'datetime',
+        ];
+    }
+
     public function category() {
         return $this->belongsTo(Category::class);
     }

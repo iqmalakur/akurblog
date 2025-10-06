@@ -10,11 +10,15 @@
   @vite('resources/css/app.css')
 </head>
 <body class="bg-white dark:bg-gray-700 text-black dark:text-white">
-  @include('layouts.navbar')
+  <div class="min-h-screen flex flex-col">
+    @include('layouts.navbar')
   
-  @yield('content')
-  
-  @include('layouts.footer')
+    <div class="flex-1">
+      @yield('content')
+    </div>
+    
+    @include('layouts.footer')
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
   @vite('resources/js/app.js')

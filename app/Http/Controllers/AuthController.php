@@ -46,4 +46,11 @@ class AuthController extends Controller
             ->route('posts.index')
             ->with('success', 'Berhasil login');
     }
+
+    public function logout(Request $request)
+    {
+        $request->session()->remove('user_id');
+        return redirect()
+            ->route('login.show');
+    }
 }

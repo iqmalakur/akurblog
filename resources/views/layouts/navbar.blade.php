@@ -1,9 +1,5 @@
 @php
-  $links = [
-      ['text' => 'Home', 'path' => '/'],
-      ['text' => 'Post', 'path' => route('posts.index')],
-      ['text' => 'Login', 'path' => route('login.show')],
-  ];
+  $links = [['text' => 'Home', 'path' => '/'], ['text' => 'Post', 'path' => route('posts.index')]];
 @endphp
 
 <nav class="fixed left-0 right-0 top-0 border-gray-200 bg-slate-100 px-8 shadow-sm">
@@ -24,19 +20,22 @@
       <ul
         class="mt-4 flex flex-col rounded-lg border border-gray-100 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:p-0 rtl:space-x-reverse">
         @foreach ($links as $link)
-          @if ($link['text'] === $title)
-            <li>
-              <a href="{{ $link['path'] }}"
-                class="block rounded-sm bg-blue-700 px-3 py-2 text-white md:bg-transparent md:p-0 md:text-blue-700"
-                aria-current="page">{{ $link['text'] }}</a>
-            </li>
-          @else
-            <li>
-              <a href="{{ $link['path'] }}"
-                class="block rounded-sm px-3 py-2 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700">{{ $link['text'] }}</a>
-            </li>
-          @endif
+          <x-navlink text="{{ $link['text'] }}" path="{{ $link['path'] }}" title="{{ $title }}"></x-navlink>
         @endforeach
+
+        @session('user_id')
+        <x-navlink text="User" path="/user" title="{{ $title }}"></x-navlink>
+
+        <form action="{{ route('logout') }}" method="POST" id="logout-form">
+          @csrf
+          @method('DELETE')
+          <button
+            class="block cursor-pointer rounded-sm px-3 py-2 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+            id="logout-button" type="submit">Logout</button>
+        </form>
+      @else
+        <x-navlink text="Login" path="{{ route('login.show') }}" title="{{ $title }}"></x-navlink>
+        @endif
       </ul>
     </div>
   </div>

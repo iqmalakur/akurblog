@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="py-20">
-    <div class="mx-auto max-w-md">
+    <div class="mx-auto max-w-lg rounded-lg bg-slate-100 p-8 shadow-md">
       <h1 class="mb-5 text-center text-3xl font-bold">Login</h1>
 
       @session('error')
@@ -40,6 +40,13 @@
         <button type="submit"
           class="cursor-pointer rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Login</button>
       </form>
+
+      <p class="mt-5 text-center text-sm text-gray-700">
+        Belum punya akun?
+        <a href="/" class="font-medium text-blue-600 hover:underline">
+          Daftar di sini
+        </a>
+      </p>
 
     </div>
   </div>

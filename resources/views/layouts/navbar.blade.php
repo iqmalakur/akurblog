@@ -2,7 +2,7 @@
   $links = [['text' => 'Home', 'path' => '/'], ['text' => 'Post', 'path' => route('posts.index')]];
 @endphp
 
-<nav class="fixed left-0 right-0 top-0 border-gray-200 bg-slate-100 px-8 shadow-sm">
+<nav class="fixed left-0 right-0 top-0 z-50 border-gray-200 bg-slate-100 px-8 shadow-sm">
   <div class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
     <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
       <span class="self-center whitespace-nowrap text-2xl font-semibold">AkurBlog</span>

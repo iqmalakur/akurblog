@@ -24,7 +24,7 @@
         @endforeach
 
         @session('user_id')
-        <x-navlink text="User" path="/user" title="{{ $title }}"></x-navlink>
+        <x-navlink text="Profile" path="/user" title="{{ $title }}"></x-navlink>
 
         <form action="{{ route('logout') }}" method="POST" id="logout-form">
           @csrf

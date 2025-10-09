@@ -47,6 +47,45 @@ class AuthController extends Controller
             ->with('success', 'Berhasil login');
     }
 
+    public function showRegister(Request $request)
+    {
+        if ($request->session()->has('user_id')) {
+            return redirect()
+                ->route('posts.index');
+        }
+
+        $title = 'Login';
+        return view('auth.register', compact('title'));
+    }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'email|required',
+            'password' => 'required|min:8',
+        ]);
+
+        $user = User::where('email', '=', $request->email)->first();
+
+        if ($user) {
+            return back()
+                ->with('error', 'email telah digunakan!')
+                ->withInput($request->except('password'));
+        }
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'email_verified_at' => now(),
+        ]);
+
+        return redirect()
+            ->route('login.show')
+            ->with('success', 'Berhasil membuat akun baru, silakan login kembali');
+    }
+
     public function logout(Request $request)
     {
         $request->session()->remove('user_id');

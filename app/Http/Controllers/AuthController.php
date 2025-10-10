@@ -41,6 +41,11 @@ class AuthController extends Controller
         }
 
         $request->session()->put('user_id', $user->id);
+        $request->session()->put('user', [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+        ]);
 
         return redirect()
             ->route('posts.index')
@@ -89,6 +94,8 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         $request->session()->remove('user_id');
+        $request->session()->remove('user');
+
         return redirect()
             ->route('login.show');
     }

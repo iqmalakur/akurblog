@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home', ['title' => 'Home']);
-});
+})->name('home');
 
 Route::resource('posts', PostController::class);
 

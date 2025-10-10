@@ -82,7 +82,9 @@ class PostController extends Controller
     public function edit(string $id)
     {
         $post = Post::find($id);
-        return view('posts.edit', compact('post'));
+        $categories = Category::all();
+
+        return view('posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -90,8 +92,26 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([]);
-        // Post::update($id);
+        if (!$request->session()->has('user_id')) {
+            return redirect()
+                ->route('posts.index');
+        }
+
+        $request->validate([
+            'title' => 'required|min:5',
+            'slug' => 'required|min:5',
+            'category_id' => 'required',
+            'content' => 'required|min:10',
+        ]);
+
+        $post = Post::find($id);
+
+        $post->update([
+            'title' => $request->title,
+            'slug' => $request->slug,
+            'category_id' => $request->category_id,
+            'content' => $request->content,
+        ]);
 
         return redirect()
             ->route('posts.index')

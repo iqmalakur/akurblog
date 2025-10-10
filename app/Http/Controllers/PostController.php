@@ -68,10 +68,12 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request, string $id)
     {
         $post = Post::find($id);
-        return view('posts.show', compact('post'));
+        $userId = $request->session()->get('user_id');
+
+        return view('posts.show', compact('post', 'userId'));
     }
 
     /**

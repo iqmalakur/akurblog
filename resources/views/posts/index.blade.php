@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('content')
-  <div class="px-20 py-8">
+  <div class="relative px-20 py-8">
     <h1 class="mb-5 text-center text-3xl font-bold">Blog Terbaru</h1>
 
     @foreach ($posts as $post)
@@ -23,5 +23,12 @@
         </a>
       </div>
     @endforeach
+
+    @session('user_id')
+      <a href="{{ route('posts.create') }}"
+        class="fixed bottom-5 right-5 mb-2 me-2 cursor-pointer rounded-full bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">+
+        Buat Post
+      </a>
+    @endsession
   </div>
 @endsection

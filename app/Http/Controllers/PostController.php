@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -20,9 +22,16 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('posts.create');
+        $categories = Category::all();
+
+        if (!$request->session()->has('user_id')) {
+            return redirect()
+                ->route('posts.index');
+        }
+
+        return view('posts.create', compact('categories'));
     }
 
     /**
@@ -30,7 +39,27 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([]);
+        if (!$request->session()->has('user_id')) {
+            return redirect()
+                ->route('posts.index');
+        }
+
+        $request->validate([
+            'title' => 'required|min:5',
+            'slug' => 'required|min:5',
+            'category_id' => 'required',
+            'content' => 'required|min:10',
+        ]);
+        $userId = $request->session()->get('user_id');
+
+        Post::create([
+            'title' => $request->title,
+            'slug' => $request->slug,
+            'category_id' => $request->category_id,
+            'content' => $request->content,
+            'user_id' => $userId,
+        ]);
+
         return redirect()
             ->route('posts.index')
             ->with('success', 'Berhasil membuat post baru!');
@@ -59,11 +88,9 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
-
-        ]);
+        $request->validate([]);
         // Post::update($id);
-        
+
         return redirect()
             ->route('posts.index')
             ->with('success', 'Berhasil update post!');

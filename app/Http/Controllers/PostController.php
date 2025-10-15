@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -12,11 +11,20 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $title = 'coba';
-        $posts = Post::whereNotNull('published_at')->orderByDesc('published_at')->get();
-        return view('posts.index', compact('posts'));
+        $search = $request->query('search') ?? '';
+        $posts = Post::whereNotNull('published_at')
+            ->when($search, function ($query, $search) {
+                $query->where(function ($q) use ($search) {
+                    $q->whereLike('title', "%$search%", false)
+                        ->orWhereLike('content', "%$search%", false);
+                });
+            })
+            ->orderByDesc('published_at')
+            ->get();
+
+        return view('posts.index', compact('posts', 'search'));
     }
 
     /**

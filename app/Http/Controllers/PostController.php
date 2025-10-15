@@ -22,6 +22,8 @@ class PostController extends Controller
                 });
             })
             ->orderByDesc('published_at')
+            ->with('category')
+            ->with('user')
             ->get();
 
         return view('posts.index', compact('posts', 'search'));

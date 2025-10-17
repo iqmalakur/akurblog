@@ -22,10 +22,11 @@
             <span class="block truncate text-sm text-gray-500">{{ $user['email'] }}</span>
           </div>
           <ul class="py-2" aria-labelledby="user-menu-button">
-            {{-- <li>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign
-                out</a>
-            </li> --}}
+            <li>
+              <a href="{{ route('users.me') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                Profil
+              </a>
+            </li>
             <li>
               <form action="{{ route('logout') }}" method="POST" id="logout-form"
                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">

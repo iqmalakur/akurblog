@@ -43,8 +43,10 @@
                     class="mb-2 me-2 rounded-full bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">
                     Lihat
                   </a>
-                  <form action="" class="inline-block">
-                    <button type="submit" {{ $post->published_at ? '' : 'disabled' }}
+                  <form action="{{ route('posts.publish', $post->id) }}" method="POST" class="inline-block">
+                    @csrf
+                    @method('PATCH')
+                    <button type="submit" {{ $post->published_at ? 'disabled' : '' }}
                       class="mb-2 me-2 cursor-pointer rounded-full bg-green-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 disabled:cursor-not-allowed disabled:bg-gray-800 disabled:text-gray-300">
                       Publish
                     </button>

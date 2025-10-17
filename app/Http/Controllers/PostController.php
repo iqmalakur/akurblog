@@ -140,4 +140,12 @@ class PostController extends Controller
             ->route('posts.index')
             ->with('success', 'Berhasil menghapus post!');
     }
+
+    public function publish(string $id)
+    {
+        $post = Post::find($id);
+        $post->update(["published_at" => now()]);
+
+        return redirect()->route('users.me');
+    }
 }

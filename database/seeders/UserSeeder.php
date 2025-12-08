@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     {
         $now = Carbon::now();
 
-        DB::table('users')->insert([
+        $users = [
             [
                 "name" => "Admin",
                 "email" => "admin@akurblog.com",
@@ -26,6 +26,98 @@ class UserSeeder extends Seeder
                 "created_at" => $now,
                 "updated_at" => $now,
             ],
-        ]);
+            [
+                "name" => "Ahmad Fauzi",
+                "email" => "ahmad.fauzi@gmail.com",
+                "email_verified_at" => $now,
+                "password" => Hash::make("user1234"),
+                "role" => "user",
+                "created_at" => $now,
+                "updated_at" => $now,
+            ],
+            [
+                "name" => "Siti Nur Aisyah",
+                "email" => "siti.aisyah@gmail.com",
+                "email_verified_at" => $now,
+                "password" => Hash::make("user1234"),
+                "role" => "user",
+                "created_at" => $now,
+                "updated_at" => $now,
+            ],
+            [
+                "name" => "Muhammad Rizky",
+                "email" => "m.rizky@yahoo.com",
+                "email_verified_at" => $now,
+                "password" => Hash::make("user1234"),
+                "role" => "user",
+                "created_at" => $now,
+                "updated_at" => $now,
+            ],
+            [
+                "name" => "Dewi Lestari",
+                "email" => "dewi.lestari@gmail.com",
+                "email_verified_at" => $now,
+                "password" => Hash::make("user1234"),
+                "role" => "user",
+                "created_at" => $now,
+                "updated_at" => $now,
+            ],
+            [
+                "name" => "Rian Pratama",
+                "email" => "rian.pratama@gmail.com",
+                "email_verified_at" => $now,
+                "password" => Hash::make("user1234"),
+                "role" => "user",
+                "created_at" => $now,
+                "updated_at" => $now,
+            ],
+            [
+                "name" => "Putri Ananda",
+                "email" => "putri.ananda@gmail.com",
+                "email_verified_at" => $now,
+                "password" => Hash::make("user1234"),
+                "role" => "user",
+                "created_at" => $now,
+                "updated_at" => $now,
+            ],
+            [
+                "name" => "Fajar Hidayat",
+                "email" => "fajar.hidayat@yahoo.com",
+                "email_verified_at" => $now,
+                "password" => Hash::make("user1234"),
+                "role" => "user",
+                "created_at" => $now,
+                "updated_at" => $now,
+            ],
+            [
+                "name" => "Nabila Zahra",
+                "email" => "nabila.zahra@gmail.com",
+                "email_verified_at" => $now,
+                "password" => Hash::make("user1234"),
+                "role" => "user",
+                "created_at" => $now,
+                "updated_at" => $now,
+            ],
+            [
+                "name" => "Andi Saputra",
+                "email" => "andi.saputra@gmail.com",
+                "email_verified_at" => $now,
+                "password" => Hash::make("user1234"),
+                "role" => "user",
+                "created_at" => $now,
+                "updated_at" => $now,
+            ],
+            [
+                "name" => "Intan Permata",
+                "email" => "intan.permata@gmail.com",
+                "email_verified_at" => $now,
+                "password" => Hash::make("user1234"),
+                "role" => "user",
+                "created_at" => $now,
+                "updated_at" => $now,
+            ],
+        ];
+
+        DB::table('users')->insert($users);
     }
 }
